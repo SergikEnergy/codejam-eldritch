@@ -1,19 +1,24 @@
-.html {
+html {
   margin: 0;
   padding: 0;
 }
-.body {
+body {
   font-family: Verdana, Tahoma, sans-serif;
   font-size: 10px;
   font-weight: 400;
-  line-height: 1.2em;
-  height: 1920px;
-  width: 1080px;
+  line-height: 1.5em;
+  min-height: 1920px;
+  min-width: 1080px;
   margin: 3px;
   padding: 0;
   box-sizing: border-box;
   /* background: no-repeat url(/assets/bg.jpg);
   background-size: 100%; */
+}
+h1 {
+  padding: 10px;
+  font-size: 1.8rem;
+  text-align: center;
 }
 .wrapper {
   display: flex;
@@ -32,19 +37,20 @@
 .ancient__cards {
   display: flex;
   flex-wrap: wrap;
-  width: 30%;
+  width: 35%;
   justify-content: space-around;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 .card {
   cursor: pointer;
   border: solid 3px rgb(72, 221, 27);
   padding: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  margin-right: 15px;
   align-self: center;
   min-width: 280px;
-  min-height: 370px;
+  min-height: 380px;
 }
 .selected__card {
   border: solid 5px rgba(226, 21, 21, 0.9);
@@ -98,15 +104,82 @@
   justify-content: flex-start;
 }
 .card__set {
-  min-width: 100%;
-  border: solid 2px;
+  padding: 5px;
+  width: 100%;
+  /* border: solid 2px; */
 }
 .counter__card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  height: 100%;
+}
+.stage > p {
+  margin: 10px auto;
+  text-align: center;
+  padding: 5px 0;
 }
 .button__mix,
 .shirt__cards {
   cursor: pointer;
 }
-.visibilaty {
+
+.button__mix {
+  width: 250px;
+  height: 70px;
+  line-height: 2rem;
+  padding: 5px;
+  border: solid 5px rgba(226, 207, 30, 0.8);
+  border-radius: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: rgba(48, 7, 114, 0.5);
+  text-align: center;
+}
+.shirt__cards {
+  background: no-repeat url("/assets/mythicCardBackground.png");
+  background-size: cover;
+  border: none;
+  width: 240px;
+  height: 310px;
+  margin-top: 5px;
+}
+.show__cards {
+  background: no-repeat;
+  background-size: cover;
+  width: 240px;
+  height: 310px;
+  margin-top: 5px;
+  /* border: none; */
+}
+.circle {
+  display: inline-block;
+  /* background-color: red; */
+  width: 80px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 25px;
+  box-sizing: content-box;
+}
+.green__circle {
+  background-color: rgba(0, 128, 0, 0.8);
+  margin-right: 20px;
+}
+.blue__circle {
+  background-color: rgba(0, 0, 255, 0.8);
+}
+.brown__circle {
+  background-color: rgba(165, 42, 42, 0.8);
+  margin-right: 20px;
+}
+.visibilaty__no {
   display: none;
+}
+.visibility__yes {
+  display: block;
 }

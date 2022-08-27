@@ -7,7 +7,7 @@ body {
   font-size: 10px;
   font-weight: 400;
   line-height: 1.5em;
-  min-height: 1920px;
+  min-height: 1600px;
   min-width: 1080px;
   margin: 3px;
   padding: 0;
@@ -75,7 +75,7 @@ h1 {
   background: no-repeat url("/assets/Ancients/IogSothoth.png");
   background-size: cover;
 }
-.level__game > li {
+.unselect {
   list-style-type: none;
   margin-bottom: 40px;
   border: solid 3px;

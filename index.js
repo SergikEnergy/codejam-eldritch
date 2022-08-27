@@ -168,7 +168,7 @@ stage3();
 //binding the cards with html elements
 
 let currentAncient = document.querySelector(".Azathoth");
-let chooseLevel = document.querySelector(".level__select");
+let chooseLevel = document.querySelector(".level__game");
 let shuffleSet = document.querySelector(".button__mix");
 let shirtCard = document.querySelector(".shirt__cards");
 let showCard = document.querySelector(".show__cards");
@@ -179,7 +179,14 @@ currentAncient.addEventListener("click", () => {
   chooseLevel.classList.remove("visibilaty__no");
 });
 chooseLevel.addEventListener("click", (event) => {
+  for (let elem of chooseLevel.children) {
+    if (elem.classList.contains("selected__level"))
+      elem.classList.remove("selected__level");
+  }
+
   activeLevel = event.target;
+  // console.log(activeLevel);
+  activeLevel.classList.toggle("selected__level");
   shuffleSet.classList.remove("visibilaty__no");
   //   console.log(activeLevel);
   //   console.log(event.target);
@@ -187,10 +194,54 @@ chooseLevel.addEventListener("click", (event) => {
 shuffleSet.addEventListener("click", () => {
   shirtCard.classList.remove("visibilaty__no");
   counterCard.classList.remove("visibilaty__no");
+  updateCounter();
 });
 shirtCard.addEventListener("click", () => {
   showCard.classList.remove("visibilaty__no");
+  showActiveCard();
+  if (
+    firstStageArray.length === 0 &&
+    secondStageArray.length === 0 &&
+    thirdStageArray.length === 0
+  ) {
+    showCard.style.background = "rgba(15, 64, 226, 0.6)";
+    shirtCard.classList.toggle("visibilaty__no");
+  }
 });
+function showActiveCard() {
+  let num;
+  let delCard;
+  let bgCardLink;
+  if (firstStageArray.length !== 0) {
+    num = getRandom(firstStageArray.length);
+    delCard = firstStageArray[num];
+    bgCardLink = `url(/assets/MythicCards${delCard.replace("..", "")})`;
+    // console.log(bgCardLink);
+    firstStageArray.splice(num, 1);
+    showCard.style.backgroundImage = `${bgCardLink}`;
+    updateCounter();
+  } else if (firstStageArray.length === 0 && secondStageArray.length !== 0) {
+    num = getRandom(secondStageArray.length);
+    delCard = secondStageArray[num];
+    bgCardLink = `url(/assets/MythicCards${delCard.replace("..", "")})`;
+    // console.log(bgCardLink);
+    secondStageArray.splice(num, 1);
+    showCard.style.backgroundImage = `${bgCardLink}`;
+    updateCounter();
+  } else if (
+    firstStageArray.length === 0 &&
+    secondStageArray.length === 0 &&
+    thirdStageArray.length !== 0
+  ) {
+    num = getRandom(thirdStageArray.length);
+    delCard = thirdStageArray[num];
+    bgCardLink = `url(/assets/MythicCards${delCard.replace("..", "")})`;
+    // console.log(bgCardLink);
+    thirdStageArray.splice(num, 1);
+    showCard.style.backgroundImage = `${bgCardLink}`;
+    updateCounter();
+  }
+}
 // init let for the counter
 let green1 = document.getElementById("green1");
 let green2 = document.getElementById("green2");
@@ -202,35 +253,32 @@ let blue1 = document.getElementById("blue1");
 let blue2 = document.getElementById("blue2");
 let blue3 = document.getElementById("blue3");
 //give the first value of counter;
-let greenCount,
-  brownCount,
-  blueCount = 0;
+let greenCount, brownCount, blueCount;
+
 function getCountStage(nameArray) {
-  let a,
-    b,
-    c = 0;
+  greenCount = brownCount = blueCount = 0;
   for (let i = 0; i < nameArray.length; i++) {
     let compare = String(nameArray[i]);
     if (compare.includes("green")) {
       greenCount++;
-      a++;
     } else if (compare.includes("brown")) {
       brownCount++;
-      b++;
     } else if (compare.includes("blue")) {
       blueCount++;
-      c++;
     }
   }
-  if (a === 0) greenCount = 0;
-  else if (b === 0) brownCount = 0;
-  else if (c === 0) blueCount = 0;
+
   return greenCount, brownCount, blueCount;
 }
+
+//create a counter
 function updateCounter() {
+  let stageOne = document.querySelector(".stage1");
+  let stageTwo = document.querySelector(".stage2");
+  let stageThree = document.querySelector(".stage3");
   getCountStage(firstStageArray);
 
-  console.log(greenCount);
+  // console.log(greenCount, brownCount, blueCount);
   green1.innerText = greenCount;
   brown1.innerText = brownCount;
   blue1.innerText = blueCount;
@@ -242,9 +290,16 @@ function updateCounter() {
   green3.innerText = greenCount;
   brown3.innerText = brownCount;
   blue3.innerText = blueCount;
-}
-updateCounter();
 
-// console.log(greenCount, brownCount, blueCount);
-// green1.innerText = firstStageArray.length;
-// console.log(chooseLevel);
+  if (firstStageArray.length === 0) {
+    // console.log(stage1Name);
+    stageOne.style.color = "red";
+  }
+  if (secondStageArray.length === 0) {
+    stageTwo.style.color = "red";
+  }
+  if (thirdStageArray.length === 0) {
+    stageThree.style.color = "red";
+  }
+}
+// updateCounter();

@@ -11,7 +11,7 @@ import greenCardsData from "./data/mythicCards/green/index.js";
 
 // console.log(ancientsData[0]);
 
-//init the variable of assets
+//init the variables of assets
 let greenCardAll = [];
 let brownCardAll = [];
 let blueCardAll = [];
@@ -27,6 +27,7 @@ let currentAncient;
 let ancientBox = document.querySelector(".ancient__cards");
 let chooseLevel = document.querySelector(".level__game");
 let reloadPage = document.querySelector(".especially");
+let checkIndex = 0;
 // console.log(reloadPage);
 
 // getting a random number of range
@@ -60,13 +61,20 @@ ancientBox.addEventListener("click", (func) => {
     }
   }
   currentAncient = document.querySelector(`.${selectedAncient}`);
+
   if (func.target.classList.contains("card")) {
+    checkIndex++;
     func.target.classList.add("selected__card");
 
     chooseLevel.classList.remove("visibilaty__no");
   }
-
-  setTimeout(getCardDeck, 3000);
+  if (checkIndex <= 1) {
+    setTimeout(getCardDeck, 3000);
+  } else {
+    console.log(checkIndex);
+    alert("You choose MORE THAN ONE card! Page will be reloaded!");
+    document.location.reload();
+  }
 });
 
 function getCardDeck() {
@@ -99,10 +107,7 @@ function getCardDeck() {
   for (let j = 0; j < blueTakeMax; j++) {
     getBlueCard();
   }
-  // currentAncient = document.querySelector(`.${selectedAncient}`);
-  // currentAncient.addEventListener("click", () => {
-  //   chooseLevel.classList.remove("visibilaty__no");
-  // });
+
   console.log(greenCardAll);
   console.log(brownCardAll);
   console.log(blueCardAll);

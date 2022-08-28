@@ -74,14 +74,14 @@ ancientBox.addEventListener("click", (func) => {
   if (checkIndex <= 1) {
     setTimeout(getCardDeck, 3000);
   } else {
-    console.log(checkIndex);
+    // console.log(checkIndex);
     alert("You choose MORE THAN ONE card! Page will be reloaded!");
     document.location.reload();
   }
 });
 
 function getCardDeck() {
-  console.log(selectedAncient);
+  // console.log(selectedAncient);
   for (let i = 0; i < ancientsData.length; i++) {
     if (ancientsData[i].name === selectedAncient) {
       greenTakeMax =
@@ -100,7 +100,7 @@ function getCardDeck() {
   }
   // return greenTakeMax, brownTakeMax, blueTakeMax;
 
-  console.log(greenTakeMax, brownTakeMax, blueTakeMax);
+  // console.log(greenTakeMax, brownTakeMax, blueTakeMax);
   for (let j = 0; j < greenTakeMax; j++) {
     getGreenCard();
   }
@@ -111,9 +111,9 @@ function getCardDeck() {
     getBlueCard();
   }
 
-  console.log(greenCardAll);
-  console.log(brownCardAll);
-  console.log(blueCardAll);
+  // console.log(greenCardAll);
+  // console.log(brownCardAll);
+  // console.log(blueCardAll);
   stage1();
   stage2();
   stage3();
@@ -181,7 +181,7 @@ function stage1() {
     firstStageArray.push(blueCardAll[select]);
     blueCardAll.splice(select, 1);
   }
-  console.log(firstStageArray);
+  // console.log(firstStageArray);
 }
 
 function stage2() {
@@ -203,7 +203,7 @@ function stage2() {
     secondStageArray.push(blueCardAll[select]);
     blueCardAll.splice(select, 1);
   }
-  console.log(secondStageArray);
+  // console.log(secondStageArray);
 }
 function stage3() {
   const maxGreen = ancientsData[linkSelectedAncient].thirdStage.greenCards;

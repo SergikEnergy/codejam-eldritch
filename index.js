@@ -1,11 +1,11 @@
-import ancientsData from "./data/ancients.js";
-import blueCards from "./assets/MythicCards/blue/index.js";
-import brownCards from "./assets/MythicCards/brown/index.js";
-import greenCards from "./assets/MythicCards/green/index.js";
+import ancientsData from "../data/ancients.js";
+import blueCards from "../assets/MythicCards/blue/index.js";
+import brownCards from "../assets/MythicCards/brown/index.js";
+import greenCards from "../assets/MythicCards/green/index.js";
 
-import blueCardsData from "./data/mythicCards/blue/index.js";
-import brownCardsData from "./data/mythicCards/brown/index.js";
-import greenCardsData from "./data/mythicCards/green/index.js";
+import blueCardsData from "../data/mythicCards/blue/index.js";
+import brownCardsData from "../data/mythicCards/brown/index.js";
+import greenCardsData from "../data/mythicCards/green/index.js";
 
 // console.log(Object.keys(greenCards).length);
 
@@ -277,7 +277,7 @@ function showActiveCard() {
   if (firstStageArray.length !== 0) {
     num = getRandom(firstStageArray.length);
     delCard = firstStageArray[num];
-    bgCardLink = `url(/assets/MythicCards${delCard.replace("..", "")})`;
+    bgCardLink = `url(./assets/MythicCards${delCard.replace("..", "")})`;
     // console.log(bgCardLink);
     firstStageArray.splice(num, 1);
     showCard.style.backgroundImage = `${bgCardLink}`;
@@ -285,7 +285,7 @@ function showActiveCard() {
   } else if (firstStageArray.length === 0 && secondStageArray.length !== 0) {
     num = getRandom(secondStageArray.length);
     delCard = secondStageArray[num];
-    bgCardLink = `url(/assets/MythicCards${delCard.replace("..", "")})`;
+    bgCardLink = `url(./assets/MythicCards${delCard.replace("..", "")})`;
     // console.log(bgCardLink);
     secondStageArray.splice(num, 1);
     showCard.style.backgroundImage = `${bgCardLink}`;
@@ -297,7 +297,7 @@ function showActiveCard() {
   ) {
     num = getRandom(thirdStageArray.length);
     delCard = thirdStageArray[num];
-    bgCardLink = `url(/assets/MythicCards${delCard.replace("..", "")})`;
+    bgCardLink = `url(./assets/MythicCards${delCard.replace("..", "")})`;
     // console.log(bgCardLink);
     thirdStageArray.splice(num, 1);
     showCard.style.backgroundImage = `${bgCardLink}`;

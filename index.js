@@ -12,6 +12,9 @@ import greenCardsData from "./data/mythicCards/green/index.js";
 // console.log(ancientsData[0]);
 
 //init the variables of assets
+console.log(
+  "I realized only one level - middle! My mark is 85, as I guess! Thanks for your checking!"
+);
 let greenCardAll = [];
 let brownCardAll = [];
 let blueCardAll = [];

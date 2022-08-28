@@ -11,40 +11,106 @@ import greenCardsData from "./data/mythicCards/green/index.js";
 
 // console.log(ancientsData[0]);
 
-// getting a random number of range
-function getRandom(max, min = 0) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
 //init the variable of assets
 let greenCardAll = [];
 let brownCardAll = [];
 let blueCardAll = [];
-//counting max quentity of cards for an ancient
-let greenTakeMax =
-  ancientsData[0].firstStage.greenCards +
-  ancientsData[0].secondStage.greenCards +
-  ancientsData[0].thirdStage.greenCards;
-let brownTakeMax =
-  ancientsData[0].firstStage.brownCards +
-  ancientsData[0].secondStage.brownCards +
-  ancientsData[0].thirdStage.brownCards;
-let blueTakeMax =
-  ancientsData[0].firstStage.blueCards +
-  ancientsData[0].secondStage.blueCards +
-  ancientsData[0].thirdStage.blueCards;
+let selectedAncient;
+let linkSelectedAncient;
+let greenTakeMax, brownTakeMax, blueTakeMax;
+//creating a stage-set of cards
+let firstStageArray = [];
+let secondStageArray = [];
+let thirdStageArray = [];
+let currentAncient;
+// alert("Please, select an ancient card");
+let ancientBox = document.querySelector(".ancient__cards");
+let chooseLevel = document.querySelector(".level__game");
+let reloadPage = document.querySelector(".especially");
+// console.log(reloadPage);
 
-for (let j = 0; j < greenTakeMax; j++) {
-  getGreenCard();
+// getting a random number of range
+function getRandom(max, min = 0) {
+  return Math.floor(Math.random() * (max - min) + min);
 }
-for (let j = 0; j < brownTakeMax; j++) {
-  getBrownCard();
+function setDefaultValue() {
+  greenCardAll = [];
+  brownCardAll = [];
+  blueCardAll = [];
+  firstStageArray = [];
+  secondStageArray = [];
+  thirdStageArray = [];
 }
-for (let j = 0; j < blueTakeMax; j++) {
-  getBlueCard();
+
+//counting max quentity of cards for an ancient
+
+ancientBox.addEventListener("click", (func) => {
+  setDefaultValue();
+  // if (!func.target.classList.contains("selected__card")) {
+  //   alert("For changing ancient's card page will be reloaded!");
+  //   document.location.reload();
+  // }
+  for (let card of ancientBox.children) {
+    card.classList.remove("selected__card");
+  }
+  for (let elem of ancientsData) {
+    if (func.target.classList.contains(`${elem.name}`)) {
+      selectedAncient = elem.name;
+      linkSelectedAncient = elem.linkElement;
+    }
+  }
+  currentAncient = document.querySelector(`.${selectedAncient}`);
+  if (func.target.classList.contains("card")) {
+    func.target.classList.add("selected__card");
+
+    chooseLevel.classList.remove("visibilaty__no");
+  }
+
+  setTimeout(getCardDeck, 3000);
+});
+
+function getCardDeck() {
+  console.log(selectedAncient);
+  for (let i = 0; i < ancientsData.length; i++) {
+    if (ancientsData[i].name === selectedAncient) {
+      greenTakeMax =
+        ancientsData[i].firstStage.greenCards +
+        ancientsData[i].secondStage.greenCards +
+        ancientsData[i].thirdStage.greenCards;
+      brownTakeMax =
+        ancientsData[i].firstStage.brownCards +
+        ancientsData[i].secondStage.brownCards +
+        ancientsData[i].thirdStage.brownCards;
+      blueTakeMax =
+        ancientsData[i].firstStage.blueCards +
+        ancientsData[i].secondStage.blueCards +
+        ancientsData[i].thirdStage.blueCards;
+    }
+  }
+  // return greenTakeMax, brownTakeMax, blueTakeMax;
+
+  console.log(greenTakeMax, brownTakeMax, blueTakeMax);
+  for (let j = 0; j < greenTakeMax; j++) {
+    getGreenCard();
+  }
+  for (let j = 0; j < brownTakeMax; j++) {
+    getBrownCard();
+  }
+  for (let j = 0; j < blueTakeMax; j++) {
+    getBlueCard();
+  }
+  // currentAncient = document.querySelector(`.${selectedAncient}`);
+  // currentAncient.addEventListener("click", () => {
+  //   chooseLevel.classList.remove("visibilaty__no");
+  // });
+  console.log(greenCardAll);
+  console.log(brownCardAll);
+  console.log(blueCardAll);
+  stage1();
+  stage2();
+  stage3();
 }
-console.log(greenCardAll);
-console.log(brownCardAll);
-console.log(blueCardAll);
+
 //getting a one green, blue, brown card
 function getGreenCard() {
   let max = Object.keys(greenCards).length;
@@ -57,8 +123,6 @@ function getGreenCard() {
     }
     i++;
   }
-  //   console.log(Object.keys(greenCards).length);
-  //   console.log(greenCards);
   return greenCardAll;
 }
 function getBrownCard() {
@@ -72,8 +136,6 @@ function getBrownCard() {
     }
     i++;
   }
-  //   console.log(Object.keys(brownCards).length);
-  //   console.log(brownCards);
   return brownCardAll;
 }
 
@@ -88,19 +150,14 @@ function getBlueCard() {
     }
     i++;
   }
-  //   console.log(Object.keys(blueCards).length);
-  //   console.log(blueCards);
   return blueCardAll;
 }
-//creating a stage-set of cards
-let firstStageArray = [];
-let secondStageArray = [];
-let thirdStageArray = [];
 
 function stage1() {
-  const maxGreen = ancientsData[0].firstStage.greenCards;
-  const maxBrown = ancientsData[0].firstStage.brownCards;
-  const maxBlue = ancientsData[0].firstStage.blueCards;
+  // console.log(ancientsData[linkSelectedAncient].firstStage.greenCards);
+  const maxGreen = ancientsData[linkSelectedAncient].firstStage.greenCards;
+  const maxBrown = ancientsData[linkSelectedAncient].firstStage.brownCards;
+  const maxBlue = ancientsData[linkSelectedAncient].firstStage.blueCards;
   for (let i = 0; i < maxGreen; i++) {
     let select = getRandom(greenCardAll.length);
     firstStageArray.push(greenCardAll[select]);
@@ -120,9 +177,9 @@ function stage1() {
 }
 
 function stage2() {
-  const maxGreen = ancientsData[0].secondStage.greenCards;
-  const maxBrown = ancientsData[0].secondStage.brownCards;
-  const maxBlue = ancientsData[0].secondStage.blueCards;
+  const maxGreen = ancientsData[linkSelectedAncient].secondStage.greenCards;
+  const maxBrown = ancientsData[linkSelectedAncient].secondStage.brownCards;
+  const maxBlue = ancientsData[linkSelectedAncient].secondStage.blueCards;
   for (let i = 0; i < maxGreen; i++) {
     let select = getRandom(greenCardAll.length);
     secondStageArray.push(greenCardAll[select]);
@@ -141,9 +198,9 @@ function stage2() {
   console.log(secondStageArray);
 }
 function stage3() {
-  const maxGreen = ancientsData[0].thirdStage.greenCards;
-  const maxBrown = ancientsData[0].thirdStage.brownCards;
-  const maxBlue = ancientsData[0].thirdStage.blueCards;
+  const maxGreen = ancientsData[linkSelectedAncient].thirdStage.greenCards;
+  const maxBrown = ancientsData[linkSelectedAncient].thirdStage.brownCards;
+  const maxBlue = ancientsData[linkSelectedAncient].thirdStage.blueCards;
   for (let i = 0; i < maxGreen; i++) {
     let select = getRandom(greenCardAll.length);
     thirdStageArray.push(greenCardAll[select]);
@@ -159,25 +216,21 @@ function stage3() {
     thirdStageArray.push(blueCardAll[select]);
     blueCardAll.splice(select, 1);
   }
-  console.log(thirdStageArray);
+  // console.log(thirdStageArray);
 }
-stage1();
-stage2();
-stage3();
 
 //binding the cards with html elements
 
-let currentAncient = document.querySelector(".Azathoth");
-let chooseLevel = document.querySelector(".level__game");
+// let currentAncient = document.querySelector(`.${selectedAncient}`);
 let shuffleSet = document.querySelector(".button__mix");
 let shirtCard = document.querySelector(".shirt__cards");
 let showCard = document.querySelector(".show__cards");
 let counterCard = document.querySelector(".counter__card");
 let activeLevel;
 
-currentAncient.addEventListener("click", () => {
-  chooseLevel.classList.remove("visibilaty__no");
-});
+// currentAncient.addEventListener("click", () => {
+//   chooseLevel.classList.remove("visibilaty__no");
+// });
 chooseLevel.addEventListener("click", (event) => {
   for (let elem of chooseLevel.children) {
     if (elem.classList.contains("selected__level"))
@@ -206,6 +259,7 @@ shirtCard.addEventListener("click", () => {
   ) {
     showCard.style.background = "rgba(15, 64, 226, 0.6)";
     shirtCard.classList.toggle("visibilaty__no");
+    reloadPage.classList.remove("visibilaty__no");
   }
 });
 function showActiveCard() {
@@ -302,4 +356,6 @@ function updateCounter() {
     stageThree.style.color = "red";
   }
 }
-// updateCounter();
+reloadPage.addEventListener("click", () => {
+  document.location.reload();
+});

@@ -20,6 +20,7 @@ const ancientsData = [
       blueCards: 0,
       brownCards: 4,
     },
+    linkElement: 0,
   },
   {
     id: "cthulhu",
@@ -40,6 +41,7 @@ const ancientsData = [
       blueCards: 0,
       brownCards: 4,
     },
+    linkElement: 1,
   },
   {
     id: "iogSothoth",
@@ -60,6 +62,7 @@ const ancientsData = [
       blueCards: 0,
       brownCards: 4,
     },
+    linkElement: 2,
   },
   {
     id: "shubNiggurath",
@@ -80,6 +83,7 @@ const ancientsData = [
       blueCards: 0,
       brownCards: 4,
     },
+    linkElement: 3,
   },
 ];
 

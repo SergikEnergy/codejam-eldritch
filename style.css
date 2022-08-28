@@ -49,8 +49,8 @@ h1 {
   margin-bottom: 10px;
   margin-right: 15px;
   align-self: center;
-  min-width: 280px;
-  min-height: 380px;
+  min-width: 20%;
+  min-height: 30%;
 }
 .selected__card {
   border: solid 5px rgba(226, 21, 21, 0.9);
@@ -59,20 +59,20 @@ h1 {
   width: 30%;
 }
 .cthulhu {
-  background: no-repeat url("/assets/Ancients/Cthulthu.png");
+  background: no-repeat url("./assets/Ancients/Cthulthu.png");
   background-size: cover;
 }
 
 .azathoth {
-  background: no-repeat url("/assets/Ancients/Azathoth.png");
+  background: no-repeat url("normalize.css");
   background-size: cover;
 }
 .shubNiggurath {
-  background: no-repeat url("/assets/Ancients/ShubNiggurath.png");
+  background: no-repeat url("./assets/Ancients/ShubNiggurath.png");
   background-size: cover;
 }
 .iogSothoth {
-  background: no-repeat url("/assets/Ancients/IogSothoth.png");
+  background: no-repeat url("./assets/Ancients/IogSothoth.png");
   background-size: cover;
 }
 .unselect {
@@ -124,7 +124,7 @@ h1 {
   gap: 10px;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  min-height: 20%;
   height: 100%;
 }
 .stage > p {
@@ -138,8 +138,8 @@ h1 {
 }
 
 .button__mix {
-  width: 250px;
-  height: 70px;
+  width: 25%;
+  height: 7%;
   line-height: 2rem;
   padding: 5px;
   border: solid 5px rgba(226, 207, 30, 0.8);
@@ -150,27 +150,27 @@ h1 {
   text-align: center;
 }
 .shirt__cards {
-  background: no-repeat url("/assets/mythicCardBackground.png");
+  background: no-repeat url("./assets/mythicCardBackground.png");
   background-size: cover;
   border: none;
-  width: 240px;
-  height: 310px;
+  width: 24%;
+  height: 31%;
   margin-top: 5px;
 }
 .show__cards {
   background: no-repeat;
   background-size: cover;
   border: solid 1px;
-  width: 240px;
-  height: 310px;
+  width: 24%;
+  height: 31%;
   margin-top: 5px;
   /* border: none; */
 }
 .circle {
   display: inline-block;
   /* background-color: red; */
-  width: 80px;
-  height: 50px;
+  width: 8%;
+  height: 5%;
   border-radius: 50%;
   text-align: center;
   padding-top: 25px;
